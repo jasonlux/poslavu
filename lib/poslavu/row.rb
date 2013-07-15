@@ -24,6 +24,8 @@ class POSLavu::Row < Hash
   # the public interface, you shouldn't ever need to call this.
   def self.from_nokogiri(xml)   # :nodoc:
     raise ArgumentError, "argument is not a Nokogiri node" unless xml.kind_of?(Nokogiri::XML::Node)
+
+    puts "xml: #{xml.inspect}"
     
     if xml.element? && xml.name == 'row'
       xml_row = xml
