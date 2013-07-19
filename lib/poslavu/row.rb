@@ -25,8 +25,6 @@ class POSLavu::Row < Hash
   def self.from_nokogiri(xml)   # :nodoc:
     raise ArgumentError, "argument is not a Nokogiri node" unless xml.kind_of?(Nokogiri::XML::Node)
 
-    puts "xml: #{xml.to_s}"
-    
     if xml.element? && xml.name == 'row'
       xml_row = xml
     else

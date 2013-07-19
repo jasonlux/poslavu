@@ -88,6 +88,7 @@ class POSLavu::Client
       end
     else
       # assume all the elements are <row>s, and let Row explode if we're wrong
+      puts "elements: #{elements.inspect}"
       elements.map { |element|
         POSLavu::Row.from_nokogiri(element)
       }
