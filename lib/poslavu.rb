@@ -1,6 +1,7 @@
 require "poslavu/version"
 
 require "poslavu/row"
+require "poslavu/result"
 require "poslavu/client"
 require "poslavu/query_scope"
 

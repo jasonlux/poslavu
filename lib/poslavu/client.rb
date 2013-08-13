@@ -87,10 +87,17 @@ class POSLavu::Client
         raise CommandFailedError, fragment.to_s
       end
     else
+      # First try a Result - result comes back from things like order insert
+      # If nothing, try a Row
       # assume all the elements are <row>s, and let Row explode if we're wrong
-      puts "elements: #{elements.inspect}"
+      puts "\n#{self.class}: response:\n#{response.body.to_s}\n\n"
       elements.map { |element|
-        POSLavu::Row.from_nokogiri(element)
+        puts "#{self.class}: element: #{element}"
+        begin
+          POSLavu::Result.from_nokogiri(element)
+        rescue ArgumentError => ex
+          POSLavu::Row.from_nokogiri(element)
+        end
       }
     end
     
